@@ -2,7 +2,7 @@ package com.hj.coding;
 
 public class Problem1_Median {
 
-    public float getMedianFromArrays(int[] a1, int[] a2) {
+    public float getMedianFromArrays_BruteForce(int[] a1, int[] a2) {
         int n = a1.length;
         int m = a2.length;
         int[] mergeArr = new int[n + m];
