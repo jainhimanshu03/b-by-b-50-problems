@@ -2,6 +2,43 @@ package com.hj.coding;
 
 public class Problem1_Median {
 
+    public float getMedianFromArrays_Optimzed(int[] a1, int[] a2) {
+        if (a1.length > a2.length)
+            return getMedianFromArrays_Optimzed(a2, a1);
+        int x = a1.length;
+        int y = a2.length;
+        int start = 0, end = x, partX = 0, partY = 0;
+        int commonPart = (x + y + 1) / 2;
+        while (start <= end) {
+            partX = (start + end) / 2;
+            partY = commonPart - partX;
+
+            int maxLeftX = partX == 0 ? Integer.MIN_VALUE : a1[partX - 1];
+            int minRightX = partX == x ? Integer.MAX_VALUE : a1[partX];
+
+            int maxLeftY = partY == 0 ? Integer.MIN_VALUE : a2[partY - 1];
+            int minRightY = partY == y ? Integer.MAX_VALUE : a2[partY];
+
+
+            if (maxLeftX <= minRightY && maxLeftY <= minRightX) {
+                float median = 0.0f;
+                if ((x + y) % 2 == 0) {
+                    int leftMost = Math.max(maxLeftX, maxLeftY);
+                    int rightMost = Math.min(minRightX, minRightY);
+                    median = (leftMost + rightMost) / 2f;
+                } else {
+                    median = Math.min(maxLeftX, minRightY);
+                }
+                return median;
+            } else if (maxLeftX > maxLeftY) {
+                end = partX - 1;
+            } else {
+                start = partX + 1;
+            }
+        }
+        return -1;
+    }
+
     public float getMedianFromArrays_BruteForce(int[] a1, int[] a2) {
         int n = a1.length;
         int m = a2.length;
