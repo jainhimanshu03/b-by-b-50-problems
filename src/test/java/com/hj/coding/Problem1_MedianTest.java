@@ -25,6 +25,14 @@ public class Problem1_MedianTest {
             10, 12, 14, 16, 18, 20
     };
 
+
+    int[] input_arr7 = new int[]{
+    };
+    int[] input_arr8 = new int[]{
+            1
+    };
+
+
     @Test
     public void test_getMedianFromArrays_BruteForce() {
         Problem1_Median testClass = new Problem1_Median();
@@ -37,9 +45,10 @@ public class Problem1_MedianTest {
     @Test
     public void test_getMedianFromArrays_Optimzed() {
         Problem1_Median testClass = new Problem1_Median();
-        float expected = 3.5f;
-        Assert.assertEquals(expected, testClass.getMedianFromArrays_Optimzed(input_arr1, input_arr2), 0);
+        //float expected = 3.5f;
+        Assert.assertEquals(3.5, testClass.getMedianFromArrays_Optimzed(input_arr1, input_arr2), 0);
         Assert.assertEquals(3, testClass.getMedianFromArrays_Optimzed(input_arr3, input_arr4), 0);
         Assert.assertEquals(11, testClass.getMedianFromArrays_Optimzed(input_arr5, input_arr6), 0);
+        Assert.assertEquals(1, testClass.getMedianFromArrays_Optimzed(input_arr7, input_arr8), 0);
     }
 }
