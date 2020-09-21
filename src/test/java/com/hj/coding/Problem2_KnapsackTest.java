@@ -41,4 +41,21 @@ public class Problem2_KnapsackTest {
         Assert.assertEquals(expResult, testClass.getKnapsackReturnWeights_Iterative(w, p, 8));
         Assert.assertEquals(expResult1, testClass.getKnapsackReturnWeights_Iterative(w1, p1, 5));
     }
+
+    @Test
+    public void test_getKnapsack_Recursion() {
+        Problem2_Knapsack testClass = new Problem2_Knapsack();
+        Assert.assertEquals(8, testClass.getKnapsack_Recursion(w, p, 8, w.length));
+        Assert.assertEquals(22, testClass.getKnapsack_Recursion(w1, p1, 5, w1.length));
+    }
+
+    @Test
+    public void test_getKnapsack_Recursion_Memo() {
+        Problem2_Knapsack testClass = new Problem2_Knapsack();
+        int[][] dp = new int[100][1000];
+        testClass.memset(dp);
+        Assert.assertEquals(8, testClass.getKnapsack_Recursion_Memo(w, p, 8, w.length, dp));
+        Assert.assertEquals(22, testClass.getKnapsack_Recursion_Memo(w1, p1, 5, w1.length, dp));
+    }
 }
+

@@ -55,4 +55,41 @@ public class Problem2_Knapsack {
 
         return arr[n][m];
     }
+
+    // Knapsack Recursive Solution
+    public int getKnapsack_Recursion(int[] w, int[] p, int maxWeight, int n) {
+        //Base case for termination for recursion
+        if (n == 0 || maxWeight == 0) return 0;
+
+        if (w[n - 1] > maxWeight) {
+            return getKnapsack_Recursion(w, p, maxWeight, n - 1);
+        } else {
+            return Math.max(p[n - 1] + getKnapsack_Recursion(w, p, maxWeight - w[n - 1], n - 1), getKnapsack_Recursion(w, p, maxWeight, n - 1));
+        }
+    }
+
+    // Knapsack Recursive Solution with DP and Memoization
+
+    public int getKnapsack_Recursion_Memo(int[] w, int[] p, int m, int n, int[][] dp) {
+        //Base case for termination for recursion
+        if (n == 0 || m == 0) return 0;
+
+        if (dp[n - 1][m - 1] != -1) {
+            return dp[n - 1][m - 1];
+        }
+
+        if (w[n - 1] > m) {
+            return dp[n - 1][m - 1] = getKnapsack_Recursion(w, p, m, n - 1);
+        } else {
+            return dp[n - 1][m - 1] = Math.max(p[n - 1] + getKnapsack_Recursion(w, p, m - w[n - 1], n - 1), getKnapsack_Recursion(w, p, m, n - 1));
+        }
+    }
+
+    public void memset(int[][] dp) {
+        for (int i = 0; i < dp.length; i++) {
+            for (int j = 0; j < dp.length; j++) {
+                dp[i][j] = -1;
+            }
+        }
+    }
 }
