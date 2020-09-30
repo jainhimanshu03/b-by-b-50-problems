@@ -1,9 +1,6 @@
 package com.hj.coding;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class Problem4_FindDuplicates {
 
@@ -32,4 +29,20 @@ public class Problem4_FindDuplicates {
 
         return res;
     }
+    
+    public static List<Integer> getDuplicate_Optimal(int[] arr) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            int num = Math.abs(arr[i]);
+            int idx = num - 1;
+            if (arr[idx] > 0) {
+                arr[idx] = -arr[idx];
+            } else {
+                if (!result.contains(num)) result.add(num);
+            }
+        }
+        return result;
+    }
+
+
 }
