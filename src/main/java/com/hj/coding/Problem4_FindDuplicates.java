@@ -29,9 +29,9 @@ public class Problem4_FindDuplicates {
 
         return res;
     }
-    
+
     public static List<Integer> getDuplicate_Optimal(int[] arr) {
-        List<Integer> result = new ArrayList<>();
+        Set<Integer> result = new HashSet<>();
         for (int i = 0; i < arr.length; i++) {
             int num = Math.abs(arr[i]);
             int idx = num - 1;
@@ -41,7 +41,11 @@ public class Problem4_FindDuplicates {
                 if (!result.contains(num)) result.add(num);
             }
         }
-        return result;
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Math.abs(arr[i]);
+        }
+        
+        return new ArrayList<>(result);
     }
 
 
